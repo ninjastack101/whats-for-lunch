@@ -20,6 +20,6 @@ export const sortItemsByDate = (items: any, key: string) => {
 	return items.sort((a: any, b: any) => {
     const previousDate: any = new Date(a[key]);
     const nextDate: any = new Date(b[key]);
-	  Math.abs(previousDate - nextDate) 
+	  return previousDate - nextDate;
   });
 }
