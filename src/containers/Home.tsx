@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import Link from '../components/Link';
+import { LUNCH_MENU_ROUTE } from '../constants/routes';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -11,7 +13,9 @@ const Wrapper = styled('div')`
 
 const Home = () => (
   <Wrapper>
-    <Button>What's For Lunch</Button> 
+    <Link to={LUNCH_MENU_ROUTE}>
+      <Button>What's For Lunch</Button> 
+    </Link>
   </Wrapper>
 );
 
