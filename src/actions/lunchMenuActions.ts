@@ -4,6 +4,8 @@ import { ThunkAction } from 'redux-thunk';
 import { IRecipe, IIngredient } from '../types';
 import axios from '../utils/axios';
 import { Dispatch } from 'react';
+import mapItemsToKeys from '../utils/mapItemsToKeys';
+import { getNonExpiringRecipes, sortRecipeByDate } from '../utils/recipes';
 
 const module = 'LUNCH_MENU';
 
@@ -13,6 +15,7 @@ export const FETCH_LUNCH_DETAILS_SUCCESS = `[${module}] FETCH_LUNCH_DETAILS_SUCC
 
 export const SAVE_RECIPES = `[${module}] SAVE_RECIPES`;
 export const SAVE_INGREDIENTS = `[${module}] SAVE_INGREDIENTS`;
+export const SAVE_LUNCH_MENU = `[${module}] SAVE_LUNCH_MENU`;
 
 export const fetchLunchDetailsRequest = createAction(FETCH_LUNCH_DETAILS_REQUEST);
 export const fetchLunchDetailsFailure = createAction(
@@ -31,6 +34,11 @@ export const saveIngredients: ActionCreator<Action> = createAction(
   (ingredients: IIngredient[]) => ({ ingredients }),
 );
 
+export const saveLunchMenu: ActionCreator<Action> = createAction(
+  SAVE_LUNCH_MENU,
+  (lunchMenu: any) => ({ lunchMenu }),
+);
+
 export const fetchLunchDetails = () => async (dispatch: Dispatch<any>) => {
   try {
     dispatch(fetchLunchDetailsRequest());
@@ -42,8 +50,16 @@ export const fetchLunchDetails = () => async (dispatch: Dispatch<any>) => {
     dispatch(saveIngredients(ingredients));
 
     dispatch(fetchLunchDetailsSuccess());
+    dispatch(prepareLunchMenu());
   } catch(error) {
     dispatch(fetchLunchDetailsFailure(error.message));
   }
 };
 
+export const prepareLunchMenu = () => async (dispatch: Dispatch<any>, getState: any) => {
+  const { lunchMenu: { recipes, ingredients } } = getState();
+  const mappedIngredients = mapItemsToKeys(ingredients, { keyPath: 'title' });
+  const nonExpiringRecipes = getNonExpiringRecipes(recipes, mappedIngredients);
+  const lunchMenu = sortRecipeByDate(nonExpiringRecipes, mappedIngredients);
+  dispatch(saveLunchMenu(lunchMenu));
+};
