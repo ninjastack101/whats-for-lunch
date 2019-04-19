@@ -1,12 +1,12 @@
 import { IRecipe, IIngredient } from '../types';
 import { formatDate, sortItemsByDate } from './date';
 
-const BEST_BEFORE = 'best-before'
-const USE_BY 			= 'use-by'
+const BEST_BEFORE = 'best-before';
+const USE_BY = 'use-by';
 
 export interface MappedIngredients {
-  [key: string]: IIngredient
-}
+  [key: string]: IIngredient;
+};
 
 export const canMakeRecipe = (
   recipe: IRecipe,
