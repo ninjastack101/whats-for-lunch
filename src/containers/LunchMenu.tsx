@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PageHeader from '../components/PageHeader';
+import MenuItems from '../components/MenuItems';
 import { fetchLunchDetails } from '../actions/lunchMenuActions';
+import { ApplicationRootState, IRecipe } from '../types';
 
 const Wrapper = styled('div')`
   height: 100%;
@@ -11,6 +13,7 @@ const Wrapper = styled('div')`
 
 interface IProps {
   fetchLunchDetails: () => void;
+  lunchMenu: IRecipe[];
 };
 
 class LunchMenu extends Component<IProps> {
@@ -22,10 +25,15 @@ class LunchMenu extends Component<IProps> {
     return (
       <Wrapper>
         <PageHeader>Today in you lunch...</PageHeader>
+        <MenuItems lunchMenu={this.props.lunchMenu} />
       </Wrapper>
     );
   }
 }
+
+const mapStateToProps = (state: ApplicationRootState) => ({
+  lunchMenu: state.lunchMenu.lunchMenu,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -36,7 +44,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   );
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(LunchMenu);
 

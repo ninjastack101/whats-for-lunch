@@ -17,6 +17,7 @@ export interface IAppReducerState {};
 export interface ILunchMenuReducerState {
   ingredients: IIngredient[];
   recipes: IRecipe[];
+  lunchMenu: IRecipe[];
 };
 
 // Your root reducer type, which is your redux state types also

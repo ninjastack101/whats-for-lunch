@@ -13,7 +13,7 @@ const ITEMS = [
     name: 'testItem3',
     data: 'some important data',
   },
-]
+];
 
 it('map items by name using keyPath option', () => {
   const expected = {
