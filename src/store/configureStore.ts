@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, Middleware, Store, compose } from 'redux';
+import thunk from 'redux-thunk';
 import reducers, { initialState } from '../reducers';
 
 const configureStore = () => {
-  const middlewares: Middleware[] = [];
+  const middlewares: Middleware[] = [thunk];
 
   if (process.env.NODE_ENV !== 'production') {
     const { createLogger } = require('redux-logger')
