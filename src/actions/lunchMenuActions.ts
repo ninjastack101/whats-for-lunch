@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions';
-import { Action, ActionCreator, Store } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { Action, ActionCreator } from 'redux';
 import { IRecipe, IIngredient } from '../types';
 import axios from '../utils/axios';
 import { Dispatch } from 'react';
@@ -43,7 +42,7 @@ export const fetchLunchDetails = () => async (dispatch: Dispatch<any>) => {
   try {
     dispatch(fetchLunchDetailsRequest());
 
-    const { data: { recipes} } = await axios.get('/5c85f7a1340000e50f89bd6c');
+    const { data: { recipes } } = await axios.get('/5c85f7a1340000e50f89bd6c');
     dispatch(saveRecipes(recipes));
   
     const { data: { ingredients } } = await axios.get('/5cb016f83100006c00e131b0');	
