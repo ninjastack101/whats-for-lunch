@@ -29,15 +29,15 @@ describe('Fetch lunch menus', () => {
       payload: {
         recipes: [{
           0: "Ham",
-          1: "Cheese"
-        }]
+          1: "Cheese",
+        }],
       },
     };
 
     const expectObj = {
       recipes: startAction.payload.recipes,
       ingredients: [],
-      lunchMenu: []
+      lunchMenu: [],
     };
     expect(reducer(initialState, startAction)).toEqual(expectObj);
     done();
@@ -50,15 +50,15 @@ describe('Fetch lunch menus', () => {
       payload: {
         ingredients: [{
           0: "Ham",
-          1: "Cheese"
-        }]
+          1: "Cheese",
+        }],
       },
     };
 
     const expectObj = {
       ingredients: startAction.payload.ingredients,
       recipes: [],
-      lunchMenu: []
+      lunchMenu: [],
     };
     expect(reducer(initialState, startAction)).toEqual(expectObj);
     done();
@@ -72,7 +72,7 @@ describe('Fetch lunch menus', () => {
         ingredients: [{
           "best-before": "2019-04-22",
           "title": "Ham",
-          "use-by": "2019-04-27"
+          "use-by": "2019-04-27",
         }]
       },
     };
@@ -80,7 +80,7 @@ describe('Fetch lunch menus', () => {
     const expectObj = {
       ingredients: startAction.payload.ingredients,
       recipes: [],
-      lunchMenu: []
+      lunchMenu: [],
     };
     expect(reducer(initialState, startAction)).toEqual(expectObj);
     done();
@@ -102,7 +102,7 @@ describe('Fetch lunch menus', () => {
     const expectObj = {
       ingredients: [],
       recipes: [],
-      lunchMenu: startAction.payload.lunchMenu
+      lunchMenu: startAction.payload.lunchMenu,
     };
     expect(reducer(initialState, startAction)).toEqual(expectObj);
     done();

@@ -18,7 +18,7 @@ describe('Fetch lunch details', () => {
           recipes: "recipes"
         },
       },
-      type: actions.SAVE_RECIPES
+      type: actions.SAVE_RECIPES,
     };
     expect(actions.saveRecipes({ recipes: 'recipes' })).toEqual(expectedActions);
     done();
@@ -32,7 +32,7 @@ describe('Fetch lunch details', () => {
           ingredients: "ingredients"
         },
       },
-      type: actions.SAVE_INGREDIENTS
+      type: actions.SAVE_INGREDIENTS,
     };
     expect(actions.saveIngredients({ ingredients: 'ingredients' })).toEqual(expectedActions);
     done();
@@ -46,7 +46,7 @@ describe('Fetch lunch details', () => {
           lunchMenu: "lunchMenu"
         },
       },
-      type: actions.SAVE_LUNCH_MENU
+      type: actions.SAVE_LUNCH_MENU,
     };
     expect(actions.saveLunchMenu({ lunchMenu: 'lunchMenu' })).toEqual(expectedActions);
     done();
